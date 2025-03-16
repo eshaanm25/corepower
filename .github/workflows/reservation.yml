@@ -1,0 +1,40 @@
+name: Daily Class Reservation
+
+on:
+  schedule:
+    # Runs at 12:00 AM CDT (05:00 UTC)
+    - cron: '0 5 * * *'
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  reserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.24'
+          cache: true
+
+      - name: Download dependencies
+        run: make deps
+
+      - name: Build
+        run: make build
+
+      - name: Run Reservation Script for Eshaan
+        env:
+          COREPOWER_USERNAME: ${{ secrets.COREPOWER_USERNAME_ESHAAN }}
+          COREPOWER_PASSWORD: ${{ secrets.COREPOWER_PASSWORD_ESHAAN }}
+        run: make run USERNAME="$COREPOWER_USERNAME" PASSWORD="$COREPOWER_PASSWORD"
+
+      - name: Run Reservation Script for Sitasma
+        env:
+          COREPOWER_USERNAME: ${{ secrets.COREPOWER_USERNAME_SITASMA }}
+          COREPOWER_PASSWORD: ${{ secrets.COREPOWER_PASSWORD_SITASMA }}
+        run: make run USERNAME="$COREPOWER_USERNAME" PASSWORD="$COREPOWER_PASSWORD"
