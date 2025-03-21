@@ -65,13 +65,13 @@ func FindIdealClass(searchResponse *opensearch.SearchResponse) *Result {
 			preferences = []ClassPreference{
 				{
 					CenterName: "Monarch",
-					StartTime:  time.Date(0, 1, 1, 11, 0, 0, 0, centralTime), // 11:00 AM CT
+					StartTime:  time.Date(0, 1, 1, 13, 0, 0, 0, centralTime), // 1:00 PM CT
 					EndTime:    time.Date(0, 1, 1, 15, 0, 0, 0, centralTime), // 3:00 PM CT
 					Preference: 1,
 				},
 				{
 					CenterName: "Mueller",
-					StartTime:  time.Date(0, 1, 1, 11, 0, 0, 0, centralTime), // 11:00 AM CT
+					StartTime:  time.Date(0, 1, 1, 13, 0, 0, 0, centralTime), // 1:00 PM CT
 					EndTime:    time.Date(0, 1, 1, 15, 0, 0, 0, centralTime), // 3:00 PM CT
 					Preference: 2,
 				},
