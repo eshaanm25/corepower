@@ -58,7 +58,7 @@ func FindIdealClass(searchResponse *opensearch.SearchResponse) *Result {
 		// Convert UTC class time to Central Time for comparison
 		classTimeCT := class.StartTimeUtc.In(centralTime)
 		weekday := classTimeCT.Weekday()
-		isWeekend := weekday == time.Saturday || weekday == time.Sunday
+		isWeekend := weekday == time.Saturday || weekday == time.Sunday || weekday == time.Monday || weekday == time.Friday
 
 		if isWeekend {
 			// Weekend preferences
